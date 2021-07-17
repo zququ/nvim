@@ -123,6 +123,12 @@ let g:terminal_color_14 = '#9AEDFE'
 
 
 " ===
+" === Transparent Neovim
+" ===
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" ===
 " === Basic Mappings
 " ===
 " Set <LEADER> as <SPACE>, ; as :
@@ -386,7 +392,7 @@ Plug 'junkblocker/git-time-lapse'
 Plug 'theniceboy/vim-calc'
 
 " Pretty Dress
-Plug 'theniceboy/eleline.vim'
+Plug 'liuchengxu/eleline.vim'
 Plug 'bling/vim-bufferline'
 "Plug 'liuchengxu/space-vim-theme'
 "Plug 'morhetz/gruvbox'
@@ -552,7 +558,9 @@ Plug 'makerj/vim-pdf'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'kana/vim-textobj-user'
 Plug 'roxma/nvim-yarp'
-
+" Clock
+Plug 'iamcco/sran.nvim', { 'do': { -> sran#util#install() } }
+Plug 'iamcco/clock.nvim'
 " ranger
 " Plug 'francoiscabrol/ranger.vim'
 " Plug 'rbgrouleff/bclose.vim'
@@ -564,13 +572,12 @@ call plug#end()
 set lazyredraw
 "set regexpengine=1
 
-
 " ===
 " === Dress up my vim
 " ===
 set termguicolors " enable true colors support
-let $NVIM_TUI_ENABLE_TRUE_COLOR=0
-"set background=dark
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=0
+set background=light
 "let ayucolor="mirage"
 "let g:oceanic_next_terminal_bold = 1
 "let g:oceanic_next_terminal_italic = 1
@@ -578,7 +585,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=0
 
 "color dracula
 "color one
-color deus
+colorscheme deus
+"color deus
 "color gruvbox
 "let ayucolor="light"
 "color ayu
@@ -595,6 +603,7 @@ hi NonText ctermfg=gray guifg=grey10
 " ===
 " === eleline.vim
 " ===
+set laststatus=2
 let g:airline_powerline_fonts = 1
 
 
@@ -685,7 +694,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'Chromium'
+let g:mkdp_browser = 'firefox'
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -958,8 +967,8 @@ augroup calendar-mappings
 	" unmap <C-n>, <C-p> for other plugins
 	autocmd FileType calendar nunmap <buffer> <C-n>
 	autocmd FileType calendar nunmap <buffer> <C-p>
+	autocmd FileType calendar nunmap <buffer> I
 augroup END
-
 
 " ===
 " === Anzu
@@ -1294,8 +1303,24 @@ sign define semshiError text=E> texthl=semshiErrorSign
 "let g:ranger_map_keys = 0
 "map R :Ranger<CR>
 
+" Clock
+" auto enable when neovim start
+let g:clockn_enable = 0
 
+" config the clock's color
+let g:clockn_color = '#000000'
 
+" config opacity of floating window background
+" 0-100 from fully opaque to transparent
+" default is 100
+let g:clockn_winblend = 100
+
+" or use the ClockNormal highlight group
+highlight ClockNormal guifg=#000000
+
+" position distance to top and right
+let g:clockn_to_top = 1
+let g:clockn_to_right = 1
 
 " ===================== End of Plugin Settings =====================
 
